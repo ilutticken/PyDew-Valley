@@ -33,7 +33,7 @@ class Plant(pygame.sprite.Sprite):
 		# plant growing 
 		self.age = 0
 		self.max_age = len(self.frames) - 1
-		self.grow_speed = GROW_SPEED[plant_type]
+		self.grow_speed = GROW_SPEED[plant_type]  # Set grow speed based on plant type
 		self.harvestable = False
 
 		# sprite setup
@@ -42,9 +42,9 @@ class Plant(pygame.sprite.Sprite):
 		self.rect = self.image.get_rect(midbottom = soil.rect.midbottom + pygame.math.Vector2(0,self.y_offset))
 		self.z = LAYERS['ground plant']
 
-	def grow(self):
+	def grow(self, dt):
 		if self.check_watered(self.rect.center):
-			self.age += self.grow_speed
+			self.age += self.grow_speed * dt  # Increment age by grow speed multiplied by delta time
 
 			if int(self.age) > 0:
 				self.z = LAYERS['main']
@@ -166,9 +166,9 @@ class SoilLayer:
 					self.grid[y][x].append('P')
 					Plant(seed, [self.all_sprites, self.plant_sprites, self.collision_sprites], soil_sprite, self.check_watered)
 
-	def update_plants(self):
+	def update_plants(self, dt):
 		for plant in self.plant_sprites.sprites():
-			plant.grow()
+			plant.grow(dt)
 
 	def create_soil_tiles(self):
 		self.soil_sprites.empty()

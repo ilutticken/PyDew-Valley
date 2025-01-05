@@ -1,4 +1,5 @@
 from pygame.math import Vector2
+
 # screen
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
@@ -35,9 +36,9 @@ APPLE_POS = {
 	'Large': [(30,24), (60,65), (50,50), (16,40),(45,50), (42,70)]
 }
 
-GROW_SPEED = {
-	'corn': 1,
-	'tomato': 0.7
+GROW_SPEED = { # Number of frames it takes for a plant to grow
+	'corn': 0.1,
+	'tomato': 0.07
 }
 
 SALE_PRICES = {

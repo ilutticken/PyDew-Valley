@@ -159,6 +159,7 @@ class Level:
 		else:
 			self.all_sprites.update(dt)
 			self.plant_collision()
+			self.soil_layer.update_plants(dt)
 
 		# weather
 		self.overlay.display()

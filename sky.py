@@ -7,17 +7,32 @@ from random import randint, choice
 class Sky:
 	def __init__(self):
 		self.display_surface = pygame.display.get_surface()
-		self.full_surf = pygame.Surface((SCREEN_WIDTH,SCREEN_HEIGHT))
-		self.start_color = [255,255,255]
-		self.end_color = (38,101,189)
+		self.full_surf = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
+		self.start_color = [255, 255, 255]
+		self.end_color = (38, 101, 189)
+		self.cycle_duration = 300  # Duration of the day/night cycle in seconds (e.g., 5 minutes)
+		self.elapsed_time = 0
+		self.phase = 'day_to_night'  # Initial phase
 
 	def display(self, dt):
-		for index, value in enumerate(self.end_color):
-			if self.start_color[index] > value:
-				self.start_color[index] -= 2 * dt
+		self.elapsed_time += dt
+		progress = min(self.elapsed_time / self.cycle_duration, 1)
+
+		if self.phase == 'day_to_night':
+			for index, value in enumerate(self.end_color):
+				self.start_color[index] = max(value, 255 - (255 - value) * progress)
+			if progress >= 1:
+				self.phase = 'night_to_day'
+				self.elapsed_time = 0
+		elif self.phase == 'night_to_day':
+			for index, value in enumerate(self.end_color):
+				self.start_color[index] = min(255, value + (255 - value) * progress)
+			if progress >= 1:
+				self.phase = 'day_to_night'
+				self.elapsed_time = 0
 
 		self.full_surf.fill(self.start_color)
-		self.display_surface.blit(self.full_surf, (0,0), special_flags = pygame.BLEND_RGBA_MULT)
+		self.display_surface.blit(self.full_surf, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
 
 class Drop(Generic):
 	def __init__(self, surf, pos, moving, groups, z):

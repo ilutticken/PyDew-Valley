@@ -1,5 +1,6 @@
 import pygame
 from settings import *
+import sys
 
 class MainMenu:
 	def __init__(self, start_game):
