@@ -31,6 +31,7 @@ class Game:
 				if event.type == pygame.KEYDOWN and event.key == pygame.K_i and self.character_screen:
 					self.character_screen.toggle()
 
+
 			dt = self.clock.tick() / 1000
 			if self.show_main_menu:
 				self.main_menu.update()
