@@ -9,7 +9,7 @@ class Game:
 	def __init__(self):
 		pygame.init()
 		self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-		pygame.display.set_caption('Sprout land')
+		pygame.display.set_caption('PyDew Valley: GAIC 25')
 		self.clock = pygame.time.Clock()
 		os.chdir(os.path.dirname(os.path.abspath(__file__)))
 		self.level = None

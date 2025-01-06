@@ -11,8 +11,22 @@ class CharacterScreen:
 	def display(self):
 		self.display_surface.fill('black')
 		y_offset = 50
+		text_surf = self.font.render('Inventory', True, 'White')
+		text_rect = text_surf.get_rect(topleft=(50, y_offset))
+		self.display_surface.blit(text_surf, text_rect)
+		
+		y_offset += 60 # Add some space between the title and the items
+		
 		for item, amount in self.player.item_inventory.items():
 			text_surf = self.font.render(f'{item}: {amount}', True, 'White')
+			text_rect = text_surf.get_rect(topleft=(50, y_offset))
+			self.display_surface.blit(text_surf, text_rect)
+			y_offset += 40
+
+		y_offset += 20 # Add some space between the items and the seeds
+
+		for seed, amount in self.player.seed_inventory.items():
+			text_surf = self.font.render(f'{seed} seed: {amount}', True, 'White')
 			text_rect = text_surf.get_rect(topleft=(50, y_offset))
 			self.display_surface.blit(text_surf, text_rect)
 			y_offset += 40
