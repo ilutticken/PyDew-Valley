@@ -30,6 +30,7 @@ class CharacterScreen:
 			text_rect = text_surf.get_rect(topleft=(50, y_offset))
 			self.display_surface.blit(text_surf, text_rect)
 			y_offset += 40
+	
 
 	def toggle(self):
 		self.visible = not self.visible
@@ -37,3 +38,6 @@ class CharacterScreen:
 	def update(self):
 		if self.visible:
 			self.display()
+			keys = pygame.key.get_pressed()
+			if keys[pygame.K_ESCAPE]:
+				self.toggle()

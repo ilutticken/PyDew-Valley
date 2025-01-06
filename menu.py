@@ -12,7 +12,7 @@ class Menu:
 		self.font = pygame.font.Font('font/LycheeSoda.ttf', 30)
 
 		# options
-		self.width = 400
+		self.width = 500  # Increase the width of the text boxes
 		self.space = 10
 		self.padding = 8
 
@@ -122,10 +122,10 @@ class Menu:
 		if selected:
 			pygame.draw.rect(self.display_surface,'black',bg_rect,4,4)
 			if item_index <= self.sell_border: # sell
-				pos_rect = self.sell_text.get_rect(midleft = (self.main_rect.left + 150,bg_rect.centery))
+				pos_rect = self.sell_text.get_rect(midleft = (self.main_rect.left + 200,bg_rect.centery))  # Adjust position
 				self.display_surface.blit(self.sell_text,pos_rect)
 			else: # buy
-				pos_rect = self.buy_text.get_rect(midleft = (self.main_rect.left + 150,bg_rect.centery))
+				pos_rect = self.buy_text.get_rect(midleft = (self.main_rect.left + 200,bg_rect.centery))  # Adjust position
 				self.display_surface.blit(self.buy_text,pos_rect)
 
 	def update(self):
