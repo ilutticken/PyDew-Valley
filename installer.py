@@ -3,17 +3,13 @@
 import os
 import sys
 import subprocess
+import importlib
 
-
-def install(package):
-
+def install(package_name):
     try:
-        import package
-
+        importlib.import_module(package_name)
+        print(f"{package_name} is already installed.")
     except ImportError:
-        print(f"{package} not found. Installing...")
-        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-        print(f"{package} installed.")
-
-    else:
-        print(f"{package} found.")
+        print(f"{package_name} not found. Installing...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package_name])
+        print(f"{package_name} installed.")

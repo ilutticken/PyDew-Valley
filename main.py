@@ -1,14 +1,13 @@
+from installer import install
+install("pygame")
+install("pytmx")
+
 import pygame, sys
 import os
 from settings import *
 from level import Level
 from main_menu import MainMenu
 from character_screen import CharacterScreen
-from installer import install
-
-# Check for and install the pytmx module
-install("pytmx")
-
 
 class Game:
     def __init__(self):
@@ -48,7 +47,6 @@ class Game:
                 if self.character_screen and self.character_screen.visible:
                     self.character_screen.update()
             pygame.display.update()
-
 
 if __name__ == "__main__":
     game = Game()
